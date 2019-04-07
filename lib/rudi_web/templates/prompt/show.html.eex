@@ -14,4 +14,5 @@
     <%= @prompt.skill.description %>
   </div>
 </div>
+<textarea class="mt-6 w-full" id="prompt_input" rows=20></textarea>
 
