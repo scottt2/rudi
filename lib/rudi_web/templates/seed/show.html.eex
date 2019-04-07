@@ -1,0 +1,18 @@
+<h1>Show Seed</h1>
+
+<ul>
+
+  <li>
+    <strong>Body:</strong>
+    <%= @seed.body %>
+  </li>
+
+  <li>
+    <strong>Public:</strong>
+    <%= @seed.public %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.seed_path(@conn, :edit, @seed) %></span>
+<span><%= link "Back", to: Routes.seed_path(@conn, :index) %></span>

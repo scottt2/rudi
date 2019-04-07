@@ -1,0 +1,5 @@
+<h1>Edit Seed</h1>
+
+<%= render "form.html", Map.put(assigns, :action, Routes.seed_path(@conn, :update, @seed)) %>
+
+<span><%= link "Back", to: Routes.seed_path(@conn, :index) %></span>

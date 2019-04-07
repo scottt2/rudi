@@ -1,0 +1,17 @@
+<script>
+  window.rudi = window.rudi || {};
+  window.rudi.username = "<%= @current_user.username %>";
+  window.rudi.promptId = "<%= @prompt.public_id %>";
+</script>
+<div class="rounded border border-grey-light">
+  <div class="px-6 py-4">
+    <div class="font-bold text-xl mb-2"><%= @prompt.seed.body %></div>
+    <p class="text-grey-darker text-base">
+      <%= @prompt.skill.name %> using <%= @prompt.skill.perspective %> person perspective.
+    </p>
+  </div>
+  <div class="px-6 py-4">
+    <%= @prompt.skill.description %>
+  </div>
+</div>
+

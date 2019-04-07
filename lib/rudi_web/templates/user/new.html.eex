@@ -1,0 +1,22 @@
+<h1>New User</h1>
+
+<%= form_for @changeset, Routes.user_path(@conn, :create), [class: "py-4"], fn f -> %>
+  <%= if @changeset.action do %>
+    <div class="bg-red-lightest border-l-4 border-red text-red-dark p-4 my-2" role="alert">
+      <p class="font-bold">The user has failed to save...</p>
+      <p>Something went wrong! Please check the errors below.</p>
+    </div>
+  <% end %>
+
+  <%= input f, :name %>
+  <%= input f, :username %>
+
+  <%= inputs_for f, :credential, fn cf -> %>
+    <%= input cf, :email %>
+    <%= input cf, :password %>
+  <% end %>
+
+  <div class="mt-3">
+    <%= submit "Create User", class: "bg-white hover:bg-grey-lightest text-grey-darkest font-semibold py-2 px-4 border border-grey-light rounded shadow" %>
+  </div>
+<% end %>

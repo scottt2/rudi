@@ -1,0 +1,28 @@
+<h1>Listing Seeds</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Body</th>
+      <th>Public</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for seed <- @seeds do %>
+    <tr>
+      <td><%= seed.body %></td>
+      <td><%= seed.public %></td>
+
+      <td>
+        <%= link "Show", to: Routes.seed_path(@conn, :show, seed) %>
+        <%= link "Edit", to: Routes.seed_path(@conn, :edit, seed) %>
+        <%= link "Delete", to: Routes.seed_path(@conn, :delete, seed), method: :delete, data: [confirm: "Are you sure?"] %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Seed", to: Routes.seed_path(@conn, :new) %></span>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>RudiWriter</title>
+    <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
+  </head>
+  <body>
+    <nav class="flex items-center justify-between flex-wrap p-12">
+      <div class="flex items-center flex-no-shrink mr-6">
+        <svg class="fill-current h-8 w-8 mr-2" width="54" height="54" viewBox="0 0 54 54" xmlns="http://www.w3.org/2000/svg"><path d="M13.5 22.1c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 38.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z"/></svg>
+        <span class="font-semibold text-xl tracking-tight">RudiWriter</span>
+      </div>
+      <div class="block lg:hidden">
+        <button class="flex items-center px-3 py-2 border rounded text-teal-lighter border-teal-light hover:text-white hover:border-white">
+          <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+        </button>
+      </div>
+      <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+        <div class="text-sm lg:flex-grow">
+          <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 no-underline text-xl text-purple hover:text-purple-lighter mr-4">
+            Prompt of the day
+          </a>
+          <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 no-underline text-xl text-purple hover:text-purple-lighter mr-4">
+            My Seeds
+          </a>
+          <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 no-underline text-xl text-purple hover:text-purple-lighter">
+            Coaching
+          </a>
+        </div>
+        <div>
+          <%= if @current_user do %>
+            <%=
+              link @current_user.username,
+              class: "no-underline inline-block text-sm px-4 py-2 leading-none border rounded text-purple border-purple hover:border-transparent hover:text-white hover:bg-purple mt-4 lg:mt-0",
+              to: Routes.user_path(@conn, :profile)
+            %>
+            <%= form_for @conn, Routes.session_path(@conn, :delete, @current_user), [class: "float-right", method: :delete], fn f -> %>
+              <%=
+                submit "Logout",
+                class: "no-underline inline-block text-sm px-4 py-2 leading-none border rounded text-purple border-purple hover:border-transparent hover:text-white hover:bg-purple ml-1 mt-4 lg:mt-0"
+              %>
+            <% end %>
+          <% else %>
+            <%=
+              link "Register",
+              class: "no-underline inline-block text-sm px-4 py-2 leading-none border rounded text-purple border-purple hover:border-transparent hover:text-white hover:bg-purple mt-4 lg:mt-0",
+              to: Routes.user_path(@conn, :new)
+            %>
+            <%=
+              link "Login",
+              class: "no-underline inline-block text-sm px-4 py-2 leading-none border rounded text-purple border-purple hover:border-transparent hover:text-white hover:bg-purple ml-1 mt-4 lg:mt-0",
+              to: Routes.session_path(@conn, :new)
+            %>
+          <% end %>
+        </div>
+      </div>
+    </nav>
+    <!--<header class="container mx-auto p-4">
+      <nav class="flex items-center justify-between flex-wrap">
+        <div class="flex items-center flex-no-shrink mr-6">
+          <svg class="fill-current h-8 w-8 mr-2" width="54" height="54" viewBox="0 0 54 54" xmlns="http://www.w3.org/2000/svg"><path d="M13.5 22.1c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 38.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z"/></svg>
+          <span class="font-semibold text-xl tracking-tight">RudiWriter</span>
+        </div>
+        <div class="block lg:hidden">
+          <button class="flex items-center px-3 py-2 border rounded text-purple-lighter border-purple-light hover:text-white hover:border-white">
+            <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+          </button>
+        </div>
+        <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+          <div class="text-sm lg:flex-grow">
+            <%= if @current_user do %>
+              <%=
+                link "Seed of the day",
+                class: "no-underline block mt-4 lg:inline-block lg:mt-0 text-purple mr-4",
+                to: "/"
+              %>
+              <%=
+                link "Your seeds",
+                class: "no-underline block mt-4 lg:inline-block lg:mt-0 text-purple mr-4",
+                to: "/"
+              %>
+            <% end %>
+          </div>
+          <div>
+            <%= if @current_user do %>
+              <%=
+                link @current_user.username,
+                class: "no-underline inline-block text-sm px-4 py-2 leading-none border rounded text-purple border-purple hover:border-transparent hover:text-white hover:bg-purple mt-4 lg:mt-0",
+                to: Routes.user_path(@conn, :profile)
+              %>
+              <%= form_for @conn, Routes.session_path(@conn, :delete, @current_user), [class: "float-right", method: :delete], fn f -> %>
+                <%=
+                  submit "Logout",
+                  class: "no-underline inline-block text-sm px-4 py-2 leading-none border rounded text-purple border-purple hover:border-transparent hover:text-white hover:bg-purple ml-1 mt-4 lg:mt-0"
+                %>
+              <% end %>
+            <% else %>
+              <%=
+                link "Register",
+                class: "no-underline inline-block text-sm px-4 py-2 leading-none border rounded text-purple border-purple hover:border-transparent hover:text-white hover:bg-purple mt-4 lg:mt-0",
+                to: Routes.user_path(@conn, :new)
+              %>
+              <%=
+                link "Login",
+                class: "no-underline inline-block text-sm px-4 py-2 leading-none border rounded text-purple border-purple hover:border-transparent hover:text-white hover:bg-purple ml-1 mt-4 lg:mt-0",
+                to: Routes.session_path(@conn, :new)
+              %>
+            <% end %>
+          </div>
+        </div>
+      </nav>
+    </header>-->
+
+    <main role="main" class="container mx-auto p-4">
+      <%= if get_flash(@conn, :info) do %>
+        <div class="bg-purple-lightest border-l-4 border-purple text-purple-dark p-4 my-2" role="alert">
+          <p class="font-bold">Good news, everyone!</p>
+          <%= get_flash(@conn, :info) %>
+        </div>
+      <% end %>
+
+      <%= if get_flash(@conn, :error) do %>
+        <div class="bg-red-lightest border-l-4 border-red text-red-dark p-4 my-2" role="alert">
+          <p class="font-bold">Bad news, everyone!</p>
+          <%= get_flash(@conn, :error) %>
+        </div>
+      <% end %>
+
+      <%= render @view_module, @view_template, assigns %>
+
+    </main>
+    <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/phoenix.js") %>"></script>
+    <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
+  </body>
+</html>
