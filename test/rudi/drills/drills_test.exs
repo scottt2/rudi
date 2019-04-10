@@ -181,4 +181,77 @@ defmodule Rudi.DrillsTest do
       assert %Ecto.Changeset{} = Drills.change_prompt(prompt)
     end
   end
+
+  describe "user_prompts" do
+    alias Rudi.Drills.UserPrompt
+
+    @valid_attrs %{active: true, data: %{}, end_at_local_epoch: 42, end_at_utc: ~N[2010-04-17 14:00:00], interupted: true, result: "some result", start_at_local_epoch: 42, start_at_utc: ~N[2010-04-17 14:00:00]}
+    @update_attrs %{active: false, data: %{}, end_at_local_epoch: 43, end_at_utc: ~N[2011-05-18 15:01:01], interupted: false, result: "some updated result", start_at_local_epoch: 43, start_at_utc: ~N[2011-05-18 15:01:01]}
+    @invalid_attrs %{active: nil, data: nil, end_at_local_epoch: nil, end_at_utc: nil, interupted: nil, result: nil, start_at_local_epoch: nil, start_at_utc: nil}
+
+    def user_prompt_fixture(attrs \\ %{}) do
+      {:ok, user_prompt} =
+        attrs
+        |> Enum.into(@valid_attrs)
+        |> Drills.create_user_prompt()
+
+      user_prompt
+    end
+
+    test "list_user_prompts/0 returns all user_prompts" do
+      user_prompt = user_prompt_fixture()
+      assert Drills.list_user_prompts() == [user_prompt]
+    end
+
+    test "get_user_prompt!/1 returns the user_prompt with given id" do
+      user_prompt = user_prompt_fixture()
+      assert Drills.get_user_prompt!(user_prompt.id) == user_prompt
+    end
+
+    test "create_user_prompt/1 with valid data creates a user_prompt" do
+      assert {:ok, %UserPrompt{} = user_prompt} = Drills.create_user_prompt(@valid_attrs)
+      assert user_prompt.active == true
+      assert user_prompt.data == %{}
+      assert user_prompt.end_at_local_epoch == 42
+      assert user_prompt.end_at_utc == ~N[2010-04-17 14:00:00]
+      assert user_prompt.interupted == true
+      assert user_prompt.result == "some result"
+      assert user_prompt.start_at_local_epoch == 42
+      assert user_prompt.start_at_utc == ~N[2010-04-17 14:00:00]
+    end
+
+    test "create_user_prompt/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Drills.create_user_prompt(@invalid_attrs)
+    end
+
+    test "update_user_prompt/2 with valid data updates the user_prompt" do
+      user_prompt = user_prompt_fixture()
+      assert {:ok, %UserPrompt{} = user_prompt} = Drills.update_user_prompt(user_prompt, @update_attrs)
+      assert user_prompt.active == false
+      assert user_prompt.data == %{}
+      assert user_prompt.end_at_local_epoch == 43
+      assert user_prompt.end_at_utc == ~N[2011-05-18 15:01:01]
+      assert user_prompt.interupted == false
+      assert user_prompt.result == "some updated result"
+      assert user_prompt.start_at_local_epoch == 43
+      assert user_prompt.start_at_utc == ~N[2011-05-18 15:01:01]
+    end
+
+    test "update_user_prompt/2 with invalid data returns error changeset" do
+      user_prompt = user_prompt_fixture()
+      assert {:error, %Ecto.Changeset{}} = Drills.update_user_prompt(user_prompt, @invalid_attrs)
+      assert user_prompt == Drills.get_user_prompt!(user_prompt.id)
+    end
+
+    test "delete_user_prompt/1 deletes the user_prompt" do
+      user_prompt = user_prompt_fixture()
+      assert {:ok, %UserPrompt{}} = Drills.delete_user_prompt(user_prompt)
+      assert_raise Ecto.NoResultsError, fn -> Drills.get_user_prompt!(user_prompt.id) end
+    end
+
+    test "change_user_prompt/1 returns a user_prompt changeset" do
+      user_prompt = user_prompt_fixture()
+      assert %Ecto.Changeset{} = Drills.change_user_prompt(user_prompt)
+    end
+  end
 end

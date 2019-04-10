@@ -20,7 +20,7 @@ defmodule Rudi.MixProject do
   def application do
     [
       mod: {Rudi.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :timex]
     ]
   end
 
@@ -45,6 +45,7 @@ defmodule Rudi.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:comeonin, "~> 4.1"},
       {:pbkdf2_elixir, "~> 0.12"},
+      {:timex, "~> 3.5"}
     ]
   end
 

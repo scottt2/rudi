@@ -1,18 +1,70 @@
 <script>
   window.rudi = window.rudi || {};
+  window.rudi.userToken = "<%= assigns[:user_token] %>";
   window.rudi.username = "<%= @current_user.username %>";
   window.rudi.promptId = "<%= @prompt.public_id %>";
+  window.rudi.userPrompts = [];
+  window.rudi.activeUserPrompt = <%= {:safe, @active_user_prompt} %>;
 </script>
-<div class="rounded border border-grey-light">
+<div class="bg-white rounded shadow-md">
   <div class="px-6 py-4">
-    <div class="font-bold text-xl mb-2"><%= @prompt.seed.body %></div>
-    <p class="text-grey-darker text-base">
+    <small class="italic text-grey-darker">Seed</small>
+    <h1 class="font-bold mb-2 text-2xl"><%= @prompt.seed.body %></h1>
+    <small class="italic text-grey-darker">Skill to work on</small>
+    <h1 class="font-bold mb-2 text-xl">
       <%= @prompt.skill.name %> using <%= @prompt.skill.perspective %> person perspective.
-    </p>
+    </h1>
+    <div class="hide-on-focus">
+      <small class="italic text-grey-darker">Wut?</small>
+      <p class="mb-2 text-sm"><%= @prompt.skill.description %></p>
+    </div>
+    <div class="flex hide-on-focus justify-between text-sm">
+      <small class="italic text-grey-darker">Reps</small>
+      <button class="hover:text-blue-lighter text-blue text-sm" id="toggle_bodies">show all</button>
+    </div>
+    <table class="table-collapse text-left w-full">
+      <%= for {user_prompt, i} <- Enum.with_index @user_prompts do %>
+        <tr class="hide-on-focus">
+          <td class="py-2 border-t border-grey-light font-mono text-xs text-purple-dark whitespace-no-wrap">
+            <span>Rep #<%= i+1 %></span>
+            <span class="inline-block bg-grey-lighter rounded-full px-3 py-1 text-xs text-grey-darker mr-2">Processing</span>
+          </td>
+          <td class="py-2 border-t border-grey-light font-mono text-right text-xs text-purple-dark whitespace-no-wrap">
+            <%= user_prompt.inserted_at |> Timex.from_now %>
+          </td>
+        </tr>
+        <tr>
+          <td colspan=2 class="border-b border-grey-light font-mono text-xs text-purple-dark">
+            <%= for p <- user_prompt.body |> String.split(~r/\R/) do %>
+              <p class="hidden hidden-showable my-2">
+                <%= p %>
+              </p>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+      <tr>
+        <td class="py-2" colspan=2>
+          <button class="bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4" id="prompt_start" style="width:200px">
+            Start new rep
+          </button>
+          <span class="pl-2 text-grey-darker text-sm" id="prompt_helper">
+            Each rep takes five (5) minutes to complete.
+          </span>
+        </td>
+      </tr>
+      <tr class="hidden" id="rep_latest">
+        <td colspan=2>
+          <textarea class="bg-grey-lighter py-4 px-2 text-lg w-full" disabled="disabled" id="prompt_input" rows=12>
+          </textarea>
+        </td>
+      </tr>
+    </table>
   </div>
-  <div class="px-6 py-4">
-    <%= @prompt.skill.description %>
+
+  <div class="flex justify-center">
+
   </div>
+
 </div>
-<textarea class="mt-6 w-full" id="prompt_input" rows=20></textarea>
 

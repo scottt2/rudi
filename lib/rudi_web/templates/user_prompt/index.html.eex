@@ -1,0 +1,40 @@
+<h1>Listing User prompts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Start at utc</th>
+      <th>Start at local epoch</th>
+      <th>End at utc</th>
+      <th>End at local epoch</th>
+      <th>Active</th>
+      <th>Interupted</th>
+      <th>Result</th>
+      <th>Data</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for user_prompt <- @user_prompts do %>
+    <tr>
+      <td><%= user_prompt.start_at_utc %></td>
+      <td><%= user_prompt.start_at_local_epoch %></td>
+      <td><%= user_prompt.end_at_utc %></td>
+      <td><%= user_prompt.end_at_local_epoch %></td>
+      <td><%= user_prompt.active %></td>
+      <td><%= user_prompt.interupted %></td>
+      <td><%= user_prompt.result %></td>
+      <td><%= user_prompt.data %></td>
+
+      <td>
+        <%= link "Show", to: Routes.user_prompt_path(@conn, :show, user_prompt) %>
+        <%= link "Edit", to: Routes.user_prompt_path(@conn, :edit, user_prompt) %>
+        <%= link "Delete", to: Routes.user_prompt_path(@conn, :delete, user_prompt), method: :delete, data: [confirm: "Are you sure?"] %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New User prompt", to: Routes.user_prompt_path(@conn, :new) %></span>

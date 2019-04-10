@@ -28,7 +28,10 @@ defmodule RudiWeb.PromptController do
 
   def show(conn, %{"id" => id}) do
     prompt = Drills.get_prompt_by_public_id!(id)
-    render(conn, "show.html", prompt: prompt)
+    # TODO: Consolidate
+    user_prompts = Drills.list_completed_user_prompts(conn.assigns.current_user, prompt)
+    active_user_prompt = Drills.get_active_user_prompt(conn.assigns.current_user, prompt) |> Jason.encode!
+    render(conn, "show.html", active_user_prompt: active_user_prompt, prompt: prompt, user_prompts: user_prompts)
   end
 
   def edit(conn, %{"id" => id}) do
