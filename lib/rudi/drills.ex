@@ -264,6 +264,11 @@ defmodule Rudi.Drills do
     |> Repo.one()
   end
 
+  def get_prompt_for_date!(:include_associations, date) do
+    from(p in Prompt, where: p.of_the_day == ^date, preload: [:seed, :skill])
+    |> Repo.one()
+  end
+
   @doc """
   Creates a prompt.
 

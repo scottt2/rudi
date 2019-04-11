@@ -7,7 +7,7 @@ defmodule Rudi.Workers.PromptOfTheDay do
   end
 
   def init(_state) do
-    Process.send_after(self(), {:run, Timex.now()}, 1000)
+    Process.send_after(self(), {:run, Timex.now()}, 1)
     {:ok, nil}
   end
 

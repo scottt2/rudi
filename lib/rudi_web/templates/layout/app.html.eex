@@ -21,7 +21,7 @@
 
       <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
         <div class="text-sm lg:flex-grow">
-          <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 no-underline text-blue hover:text-blue-lighter mr-4">
+          <a href="/prompts/today" class="block mt-4 lg:inline-block lg:mt-0 no-underline text-blue hover:text-blue-lighter mr-4">
             Prompt o' the day
           </a>
           <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 no-underline text-blue hover:text-blue-lighter mr-4">
@@ -38,7 +38,7 @@
               class: "block mt-4 lg:inline-block lg:mt-0 no-underline text-blue hover:text-blue-lighter mr-4",
               to: Routes.user_path(@conn, :profile)
             %>
-            <%= form_for @conn, Routes.session_path(@conn, :delete, @current_user), [class: "float-right", method: :delete], fn f -> %>
+            <%= form_for @conn, Routes.session_path(@conn, :delete, @current_user), [class: "float-right", method: :delete], fn _f -> %>
               <%=
                 submit "Logout",
                 class: "block mt-4 lg:inline-block lg:mt-0 no-underline text-blue hover:text-blue-lighter mr-4"

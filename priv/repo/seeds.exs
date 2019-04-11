@@ -171,11 +171,11 @@ rudi =
   end
 
 [
-  "Artificial Intelligence has determined humanity can no longer exist but the explanation is 'artichoke.'",
+  "Artificial Intelligence has determined humanity can no longer exist but the explanation is \"artichoke.\"",
   "A faithful spouse of 26 years is informed during routine bloodwork that they are HIV positive.",
-  "'My wife's goddamn rollblades'",
-  "The sign read 'Please refrain from using the word zza.'",
-  "'We seem to be experiencing quantum packet loss. We apologize for any inconvenience.'"
+  "\"My wife's goddamn rollblades\"",
+  "The sign read \"Please refrain from using the word zza.\"",
+  "\"We seem to be experiencing quantum packet loss. We apologize for any inconvenience.\""
 ]
 |> Enum.each fn body ->
   case Rudi.Repo.get_by(Rudi.Drills.Seed, body: body) do

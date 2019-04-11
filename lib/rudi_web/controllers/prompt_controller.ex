@@ -27,7 +27,10 @@ defmodule RudiWeb.PromptController do
   end
 
   def show(conn, %{"id" => id}) do
-    prompt = Drills.get_prompt_by_public_id!(id)
+    prompt = cond do
+      id == "today" -> Drills.get_prompt_for_date!(:include_associations, Date.utc_today())
+      true -> Drills.get_prompt_by_public_id!(id)
+    end
     # TODO: Consolidate
     user_prompts = Drills.list_completed_user_prompts(conn.assigns.current_user, prompt)
     active_user_prompt = Drills.get_active_user_prompt(conn.assigns.current_user, prompt) |> Jason.encode!
