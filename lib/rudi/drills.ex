@@ -43,6 +43,11 @@ defmodule Rudi.Drills do
     |> Repo.one()
   end
 
+  def get_random_seed! do
+    from(s in Seed, where: s.promptable == true, order_by: fragment("RANDOM()"), limit: 1)
+    |> Repo.one()
+  end
+
   @doc """
   Creates a seed.
 
@@ -148,6 +153,11 @@ defmodule Rudi.Drills do
   """
   def get_skill!(id), do: Repo.get!(Skill, id)
 
+  def get_random_skill! do
+    (from Skill, order_by: fragment("RANDOM()"), limit: 1)
+    |> Repo.one()
+  end
+
   @doc """
   Creates a skill.
 
@@ -246,6 +256,11 @@ defmodule Rudi.Drills do
 
   def get_prompt_by_public_id!(public_id) do
     from(p in Prompt, where: p.public_id == ^public_id, preload: [:seed, :skill])
+    |> Repo.one()
+  end
+
+  def get_prompt_for_date!(date) do
+    from(p in Prompt, where: p.of_the_day == ^date)
     |> Repo.one()
   end
 

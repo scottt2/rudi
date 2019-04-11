@@ -11,9 +11,9 @@ defmodule Rudi.Application do
       # Start the Ecto repository
       Rudi.Repo,
       # Start the endpoint when the application starts
-      RudiWeb.Endpoint
-      # Starts a worker by calling: Rudi.Worker.start_link(arg)
-      # {Rudi.Worker, arg},
+      RudiWeb.Endpoint,
+      # Starts the worker to create the prompt of the day
+      Rudi.Workers.PromptOfTheDay,
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
