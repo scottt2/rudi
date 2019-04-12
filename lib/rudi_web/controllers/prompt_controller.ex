@@ -28,7 +28,17 @@ defmodule RudiWeb.PromptController do
 
   def show(conn, %{"id" => id}) do
     prompt = cond do
-      id == "today" -> Drills.get_prompt_for_date!(:include_associations, Date.utc_today())
+      id == "today" ->
+        now_date = Date.utc_today()
+        case Drills.get_prompt_for_date!(:include_associations, now_date) do
+          nil ->
+            Rudi.Repo.insert!(%Rudi.Drills.Prompt{
+              of_the_day: now_date,
+              seed: Rudi.Drills.get_random_seed!,
+              skill: Rudi.Drills.get_random_skill!,
+            })
+          prompt -> prompt
+        end
       true -> Drills.get_prompt_by_public_id!(id)
     end
     # TODO: Consolidate

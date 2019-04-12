@@ -13,7 +13,7 @@ defmodule Rudi.Application do
       # Start the endpoint when the application starts
       RudiWeb.Endpoint,
       # Starts the worker to create the prompt of the day
-      Rudi.Workers.PromptOfTheDay,
+      # Rudi.Workers.PromptOfTheDay,
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
