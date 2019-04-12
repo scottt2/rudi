@@ -24,12 +24,14 @@
           <a href="/prompts/today" class="block mt-4 lg:inline-block lg:mt-0 no-underline text-blue hover:text-blue-lighter mr-4">
             Prompt o' the day
           </a>
+          <!--
           <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 no-underline text-blue hover:text-blue-lighter mr-4">
             TouchTyper
           </a>
           <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 no-underline text-blue hover:text-blue-lighter">
             My Progress
           </a>
+          -->
         </div>
         <div class="text-sm">
           <%= if @current_user do %>
