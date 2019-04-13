@@ -1,10 +1,5 @@
 defmodule Rudi.Tasks.ProcessRep do
-  def run(%Rudi.Drills.UserPrompt{
-    body: body,
-    interupt_count: interupt_count,
-    socket_id: socket_id,
-    typings: typings
-  }) do
+  def run(user_prompt) do
     results = %{
       additions: 0,
       deletions: 0,
@@ -14,7 +9,7 @@ defmodule Rudi.Tasks.ProcessRep do
       strokes: 0,
     }
     results =
-      typings
+      user_prompt.typings
       |> Enum.chunk_every(3)
       |> Enum.reduce(results, fn [ts, addition, char], r ->
         r
@@ -26,6 +21,10 @@ defmodule Rudi.Tasks.ProcessRep do
         |> Map.put(:strokes, r.strokes + 1)
       end)
 
-    IO.puts inspect results
+    updated_up = user_prompt |> Ecto.Changeset.change(insights: results)
+    case Rudi.Repo.update(updated_up) do
+      {:ok, updated_up} -> RudiWeb.Endpoint.broadcast(updated_up.socket_id, "rep:processed", updated_up)
+      {:error, _} -> :error
+    end
   end
 end

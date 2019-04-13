@@ -18,6 +18,7 @@ defmodule Rudi.Drills.UserPrompt do
     field :start_at_device_epoch, :decimal
     field :start_at_utc, :utc_datetime
     field :socket_id, :string
+    field :insights, :map
 
     timestamps()
   end
