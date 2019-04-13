@@ -69,7 +69,11 @@ defmodule RudiWeb.UserPromptChannel do
             end_at_utc: DateTime.utc_now |> DateTime.truncate(:second)
           )
         case Rudi.Repo.update(updated_up) do
-          {:ok, updated_up} -> socket |> assign(:user_prompt, updated_up)
+          {:ok, updated_up} ->
+            Task.Supervisor.async_nolink(Rudi.TaskSupervisor, fn ->
+              Rudi.Tasks.ProcessRep.run(updated_up)
+            end)
+            socket |> assign(:user_prompt, updated_up)
           {:error, _} -> socket
         end
       _ -> socket

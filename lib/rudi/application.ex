@@ -6,14 +6,16 @@ defmodule Rudi.Application do
   use Application
 
   def start(_type, _args) do
+    import Supervisor.Spec, warn: false
+
     # List all child processes to be supervised
     children = [
       # Start the Ecto repository
       Rudi.Repo,
       # Start the endpoint when the application starts
       RudiWeb.Endpoint,
-      # Starts the worker to create the prompt of the day
-      # Rudi.Workers.PromptOfTheDay,
+      # Starts a task supervisor that we can dump tasks into
+      supervisor(Task.Supervisor, [[name: Rudi.TaskSupervisor]])
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
