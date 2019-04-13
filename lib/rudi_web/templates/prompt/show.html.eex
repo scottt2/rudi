@@ -20,7 +20,9 @@
     </div>
     <div class="flex hide-on-focus justify-between text-sm">
       <small class="italic text-grey-darker">Reps</small>
-      <button class="hover:text-blue-lighter text-blue text-sm" id="toggle_bodies">show all</button>
+      <%= if length(@user_prompts) > 0 do %>
+        <button class="hover:text-blue-lighter text-blue text-sm" id="toggle_bodies">show all</button>
+      <% end %>
     </div>
     <table class="table-collapse text-left w-full">
       <%= for {user_prompt, i} <- Enum.with_index @user_prompts do %>

@@ -10,7 +10,7 @@ defmodule RudiWeb.SessionController do
       {:ok, conn} ->
         conn
         |> put_flash(:info, "Couldn't stay away, eh?")
-        |> redirect(to: Routes.page_path(conn, :index))
+        |> redirect(to: Routes.user_path(conn, :profile))
 
       {:error, _reason, conn} ->
         conn
