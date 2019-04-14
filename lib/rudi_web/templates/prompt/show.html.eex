@@ -46,6 +46,32 @@
         </tr>
         <tr>
           <td colspan=2 class="border-b border-grey-light font-mono text-xs text-purple-dark">
+            <%= if user_prompt.insights do %>
+              <div class="hidden hidden-showable">
+                <div class="bg-grey-lighter flex justify-between rounded px-2 text-grey-darker text-xs">
+                  <div class="text-center m-2">
+                    <strong>
+                      <%= user_prompt.insights["additions"] / user_prompt.insights["strokes"] * 100 |> Float.round(2) %>%
+                    </strong>
+                    <p>Constructive</p>
+                  </div>
+                  <div class="text-center m-2">
+                    <strong>
+                      <%= user_prompt.insights["deletions"] / user_prompt.insights["strokes"] * 100 |> Float.round(2) %>%
+                    </strong>
+                    <p>Destructive</p>
+                  </div>
+                  <div class="text-center m-2">
+                    <strong><%= user_prompt.insights["delta_max"] / 300_000 * 100 |> Float.round(2) %>%</strong>
+                    <p>Hesitative</p>
+                  </div>
+                  <div class="text-center m-2">
+                    <strong><%= user_prompt.insights["strokes"] / 25%></strong>
+                    <p>WPM</p>
+                  </div>
+                </div>
+              </div>
+            <% end %>
             <%= for p <- user_prompt.body |> String.split(~r/\R/) do %>
               <p class="hidden hidden-showable my-2">
                 <%= p %>

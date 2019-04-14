@@ -1,0 +1,56 @@
+<h1>Show Progress report</h1>
+
+<ul>
+
+  <li>
+    <strong>Week:</strong>
+    <%= @progress_report.week %>
+  </li>
+
+  <li>
+    <strong>Year:</strong>
+    <%= @progress_report.year %>
+  </li>
+
+  <li>
+    <strong>Addition count:</strong>
+    <%= @progress_report.addition_count %>
+  </li>
+
+  <li>
+    <strong>Addition average:</strong>
+    <%= @progress_report.addition_average %>
+  </li>
+
+  <li>
+    <strong>Deletion count:</strong>
+    <%= @progress_report.deletion_count %>
+  </li>
+
+  <li>
+    <strong>Deletion average:</strong>
+    <%= @progress_report.deletion_average %>
+  </li>
+
+  <li>
+    <strong>Delta min avg:</strong>
+    <%= @progress_report.delta_min_avg %>
+  </li>
+
+  <li>
+    <strong>Delta max avg:</strong>
+    <%= @progress_report.delta_max_avg %>
+  </li>
+
+  <li>
+    <strong>Public:</strong>
+    <%= @progress_report.public %>
+  </li>
+
+  <li>
+    <strong>Public:</strong>
+    <%= @progress_report.public_id %>
+  </li>
+
+</ul>
+

@@ -349,6 +349,21 @@ defmodule Rudi.Drills do
     Repo.all(UserPrompt)
   end
 
+  def list_user_prompts(:year_week, user_id, year, week) do
+    start_utc = Timex.from_iso_triplet({year, week, 1}) |> Timex.to_datetime
+    end_utc =
+      Timex.from_iso_triplet({year, week, 7})
+      |> Timex.to_datetime
+      |> Timex.end_of_day
+    from(
+      up in UserPrompt,
+      where: up.user_id == ^user_id
+      and up.start_at_utc >= ^start_utc
+      and up.start_at_utc <= ^end_utc
+    )
+    |> Repo.all()
+  end
+
   def list_user_prompts_for_user_and_prompt(user, prompt) do
     from(
       up in UserPrompt,

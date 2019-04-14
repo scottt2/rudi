@@ -23,15 +23,6 @@
   },
   %Rudi.Drills.Skill{
     name: "Description of environment",
-    description: "Second person voice is when the audience is made a character.
-     For this skill, focus your creative efforts on detailing the lay of the
-     land as it existed and the appearances of characters rather than dialog.",
-    perspective: "second",
-    tense: "past",
-    weight: 2,
-  },
-  %Rudi.Drills.Skill{
-    name: "Description of environment",
     description: "Third person voice makes it clear that the narrator is an
      unspecified entity or uninvolved person who conveys the story.
      For this skill, focus your creative efforts on detailing the lay of the
@@ -52,15 +43,6 @@
   },
   %Rudi.Drills.Skill{
     name: "Description of environment",
-    description: "Second person voice is when the audience is made a character.
-     For this skill, focus your creative efforts on detailing the lay of the
-     land as it exists and the appearances of characters rather than dialog.",
-    perspective: "second",
-    tense: "present",
-    weight: 2,
-  },
-  %Rudi.Drills.Skill{
-    name: "Description of environment",
     description: "Third person voice makes it clear that the narrator is an
      unspecified entity or uninvolved person who conveys the story.
      For this skill, focus your creative efforts on detailing the lay of the
@@ -81,15 +63,6 @@
   },
   %Rudi.Drills.Skill{
     name: "Character dialog",
-    description: "Second person voice is when the audience is made a character.
-     For this skill, focus your creative efforts on detailing the words spoken
-     between characters (even if just one to themselves).",
-    perspective: "second",
-    tense: "past",
-    weight: 2,
-  },
-  %Rudi.Drills.Skill{
-    name: "Character dialog",
     description: "Third person voice makes it clear that the narrator is an
      unspecified entity or uninvolved person who conveys the story.
      For this skill, focus your creative efforts on detailing the words spoken
@@ -110,15 +83,6 @@
   },
   %Rudi.Drills.Skill{
     name: "Character dialog",
-    description: "Second person voice is when the audience is made a character.
-     For this skill, focus your creative efforts on detailing the words spoken
-     between characters (even if just one to themselves).",
-    perspective: "second",
-    tense: "present",
-    weight: 2,
-  },
-  %Rudi.Drills.Skill{
-    name: "Character dialog",
     description: "Third person voice makes it clear that the narrator is an
      unspecified entity or uninvolved person who conveys the story.
      For this skill, focus your creative efforts on detailing the words spoken
@@ -128,33 +92,13 @@
     weight: 7,
   },
   %Rudi.Drills.Skill{
-    name: "Stream of conciousness",
-    description: "First person voice is revealed through
-     a narrator who is also explicitly a character within their own story.
-     For this skill, just let it rip. Try to not stop typing even if what you are
-     typing doesn't make sense (yet...).",
-    perspective: "first",
-    tense: "stream",
-    weight: 5,
-  },
-  %Rudi.Drills.Skill{
-    name: "Stream of conciousness",
-     description: "Second person voice is when the audience is made a character.
-     For this skill, just let it rip. Try to not stop typing even if what you are
-     typing doesn't make sense (yet...).",
-    perspective: "second",
-    tense: "stream",
-    weight: 1,
-  },
-  %Rudi.Drills.Skill{
-    name: "Stream of conciousness",
-    description: "Third person voice makes it clear that the narrator is an
-     unspecified entity or uninvolved person who conveys the story.
-     For this skill, just let it rip. Try to not stop typing even if what you are
-     typing doesn't make sense (yet...)",
-    perspective: "third",
-    tense: "stream",
-    weight: 5,
+    name: "Free Write",
+    description: "Free writing is a great tool for overcoming inhibitions. For
+    this skill, try to continuously type without regard to spelling or grammar.
+    The goal is to let your ideas bypass your ego. Let your thoughts flow!"
+    perspective: "free",
+    tense: "free",
+    weight: 7,
   },
 ]
 |> Enum.each fn skill ->
@@ -175,7 +119,9 @@ rudi =
   "A faithful spouse of 26 years is informed during routine bloodwork that they are HIV positive.",
   "\"My wife's goddamn rollblades\"",
   "The sign read \"Please refrain from using the word zza.\"",
-  "\"We seem to be experiencing quantum packet loss. We apologize for any inconvenience.\""
+  "\"We seem to be experiencing quantum packet loss. We apologize for any inconvenience.\"",
+  "\"Sour grapes\"",
+
 ]
 |> Enum.each fn body ->
   case Rudi.Repo.get_by(Rudi.Drills.Seed, body: body) do

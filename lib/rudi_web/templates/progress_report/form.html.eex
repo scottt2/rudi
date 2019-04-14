@@ -1,0 +1,51 @@
+<%= form_for @changeset, @action, fn f -> %>
+  <%= if @changeset.action do %>
+    <div class="alert alert-danger">
+      <p>Oops, something went wrong! Please check the errors below.</p>
+    </div>
+  <% end %>
+
+  <%= label f, :week %>
+  <%= number_input f, :week %>
+  <%= error_tag f, :week %>
+
+  <%= label f, :year %>
+  <%= number_input f, :year %>
+  <%= error_tag f, :year %>
+
+  <%= label f, :addition_count %>
+  <%= number_input f, :addition_count %>
+  <%= error_tag f, :addition_count %>
+
+  <%= label f, :addition_average %>
+  <%= number_input f, :addition_average, step: "any" %>
+  <%= error_tag f, :addition_average %>
+
+  <%= label f, :deletion_count %>
+  <%= number_input f, :deletion_count %>
+  <%= error_tag f, :deletion_count %>
+
+  <%= label f, :deletion_average %>
+  <%= number_input f, :deletion_average, step: "any" %>
+  <%= error_tag f, :deletion_average %>
+
+  <%= label f, :delta_min_avg %>
+  <%= number_input f, :delta_min_avg, step: "any" %>
+  <%= error_tag f, :delta_min_avg %>
+
+  <%= label f, :delta_max_avg %>
+  <%= number_input f, :delta_max_avg, step: "any" %>
+  <%= error_tag f, :delta_max_avg %>
+
+  <%= label f, :public %>
+  <%= checkbox f, :public %>
+  <%= error_tag f, :public %>
+
+  <%= label f, :public_id %>
+  <%= text_input f, :public_id %>
+  <%= error_tag f, :public_id %>
+
+  <div>
+    <%= submit "Save" %>
+  </div>
+<% end %>

@@ -1,0 +1,28 @@
+<script>
+  window.rudi = window.rudi || {};
+  window.rudi.username = "<%= @current_user.username %>";
+</script>
+<div class="bg-white pt-4 rounded shadow-md">
+  <h1 class="text-center">The <%= @current_user.username %> Weekly</h1>
+  <div class="border-b border-black border-t mt-2 py-2 text-center text-xs uppercase w-full">Week of April 15th, 2019</div>
+  <div class="flex">
+    <div class="text-center px-4 py-2 m-2">
+      <h2>1,234</h2>
+      <p>Completed Reps</p>
+    </div>
+    <div class="flex-auto px-4 py-2 m-2">
+      Bacon ipsum dolor amet pig turducken doner t-bone, bresaola cupim spare ribs. Strip steak venison buffalo, shank salami filet mignon jerky shoulder tenderloin prosciutto capicola. Doner spare ribs boudin ham hock tongue corned beef.
+    </div>
+  </div>
+  <div class="flex">
+   <div class="flex-auto px-4 py-2 m-2">
+      Bacon ipsum dolor amet pig turducken doner t-bone, bresaola cupim spare ribs. Strip steak venison buffalo, shank salami filet mignon jerky shoulder tenderloin prosciutto capicola. Doner spare ribs boudin ham hock tongue corned beef.
+    </div>
+    <div class="flex-auto p-2">
+      <div
+        class="border"
+        style="height: 200px; width: 200px;">
+      </div>
+    </div>
+  </div>
+</div>

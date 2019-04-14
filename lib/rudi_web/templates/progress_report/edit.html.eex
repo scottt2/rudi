@@ -1,0 +1,5 @@
+<h1>Edit Progress report</h1>
+
+<%= render "form.html", Map.put(assigns, :action, Routes.progress_report_path(@conn, :update, @progress_report)) %>
+
+<span><%= link "Back", to: Routes.progress_report_path(@conn, :index) %></span>

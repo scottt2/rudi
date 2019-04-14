@@ -18,7 +18,9 @@ defmodule RudiWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    get "/coach", PageController, :coach
     get "/me", UserController, :profile
+    resources "/reports", ProgressReportController, only: [:index, :show]
     resources "/prompts", PromptController, only: [:show]
     resources "/users", UserController, only: [:index, :show, :new, :create]
     resources "/seeds", SeedController, only: [:index, :show, :new, :create, :edit, :delete]
