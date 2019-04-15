@@ -3,32 +3,57 @@
 </script>
 <div class="bg-white mb-4 pt-4 shadow-md">
   <h1 class="text-5xl text-center">RudiWriter</h1>
-  <div class="border-b border-black border-t justify-between mt-2 flex p-2 text-center text-xs uppercase w-full">
-    <div>Issue no. 420</div>
-    <div>Sunday, April 15th</div>
+  <div class="border-b border-grey border-t justify-between mt-2 flex p-2 text-center text-xs uppercase w-full">
+    <div>Version 1.0.3</div>
+    <div><%= Timex.today() |> Timex.format!("{WDfull} {Mfull} {D}, {YYYY}") %></div>
     <div>FREE | $1.99 / m</div>
   </div>
   <h2 class="px-6 py-2 text-4xl text-justify italic">
-    Fun daily exercise to improve your writing skills, says Famous Writer
+    Daily exercise improves your writing skills, says RudiWriter Creator
   </h2>
   <div class="pb-4 px-4">
     <div class="flex">
-      <div class="text-justify pr-4 py-2">
-        Bacon ipsum dolor amet pig turducken doner t-bone, bresaola cupim spare ribs. Strip steak venison buffalo, shank salami filet mignon jerky shoulder tenderloin prosciutto capicola.
+      <div class="flex-1 text-justify pr-4 py-2">
+        Creative professionals agree&mdash;one of the most difficult things to overcome is a blank sheet of paper. RudiWriter aims to help you help yourself vanquish the tyranny of the blank page!
       </div>
-      <div class="text-justify px-4 py-2">
-        Bacon ipsum dolor amet pig turducken doner t-bone, bresaola cupim spare ribs. Strip steak venison buffalo, shank salami filet mignon jerky shoulder tenderloin prosciutto capicola.
+      <div class="flex-1 text-justify px-4 py-2">
+        RudiWriter focuses on two factors that hinder creative expression. The first is simple inhibition. In a <a class="no-underline text-blue hover:underline hover:underline" href="/blog/haters-everywhere">society wrought with negative criticism</a> at every turn, writers are more apt to second guess themselves&mdash;to self edit.
       </div>
-      <div class="text-justify pl-4 py-2">
-        Bacon ipsum dolor amet pig turducken doner t-bone, bresaola cupim spare ribs. Strip steak venison buffalo, shank salami filet mignon jerky shoulder tenderloin prosciutto capicola.
+      <div class="flex-1 text-justify pl-4 py-2">
+        The second factor is the simple act of typing on a keyboard. Typing is the conduit of ideas. RudiWriter helps build a bigger pipe to capture more ideas, improving both quality and quantity.
       </div>
     </div>
     <div class="flex mt-4">
      <img src="https://picsum.photos/g/300/300?image=1073" />
      <div class="px-4">
-       <p>Bacon ipsum dolor amet pig turducken doner t-bone, bresaola cupim spare ribs. Strip steak venison buffalo, shank salami filet mignon jerky shoulder tenderloin prosciutto capicola. Doner spare ribs boudin ham hock tongue corned beef.</p>
-       <p class="mt-4">Bacon ipsum dolor amet pig turducken doner t-bone, bresaola cupim spare ribs. Strip steak venison buffalo, shank salami filet mignon jerky shoulder tenderloin prosciutto capicola. Doner spare ribs boudin ham hock tongue corned beef.</p>
-
+       <p class="text-justify">RudiWriter provides clear insights and guidance that adapt to the individual needs and habits of each writer. At its core, RudiWriter helps writers create more quality content in less time.</p>
+       <p class="mt-4 text-justify">The improvements in speed and quality come from the focused practice sessions that only occupy a few minutes a day. These sessions are a great warm up for the actual work of the day and they help move the needle on progress.</p>
+      </div>
+    </div>
+  </div>
+  <h2 class="p-8 text-xl text-center italic">
+    By focusing on increasing quality additions and decreasing hesitation and deletions, RudiWriter can help any writer improve their productivity.
+    <small class="text-grey">- RudiWriter Creator</small>
+  </h2>
+  <div class="pb-4 px-4">
+    <div class="flex">
+      <div class="flex-1 justify-center text-justify pr-4 py-2">
+        <div class="text-center">
+          <img src="/images/perspective.svg" width=150 />
+        </div>
+        <p>Perspective comes in three flavors but often writers will settle into one out of comfort. RudiWriter has exercises to push writers to master all.</p>
+      </div>
+      <div class="flex-1 justify-center text-justify px-4 py-2">
+        <div class="text-center">
+          <img src="/images/tense.jpeg" width=150/>
+        </div>
+        <p>Tense is integral to writing great prose. RudiWriter strategically exercises different tenses at different intensities to push writers to adapt.</p>
+      </div>
+      <div class="flex-1 justify-center text-justify pl-4 py-2">
+        <div class="text-center">
+          <img src="https://picsum.photos/g/150/150" />
+        </div>
+        <p>One of the most effective creative exercises is the free write. RudiWriter schedules free writing exercises at critical points in the skill progressions to help unblock the flow.</p>
       </div>
     </div>
   </div>
