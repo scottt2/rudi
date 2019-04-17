@@ -5,23 +5,10 @@
     </div>
   <% end %>
 
-  <%= label f, :display_name %>
-  <%= text_input f, :display_name %>
-  <%= error_tag f, :display_name %>
-
-  <%= label f, :body %>
-  <%= textarea f, :body %>
-  <%= error_tag f, :body %>
-
-  <%= label f, :published_at %>
-  <%= datetime_select f, :published_at %>
-  <%= error_tag f, :published_at %>
-
-  <%= label f, :tags %>
-  <%= multiple_select f, :tags, ["Option 1": "option1", "Option 2": "option2"] %>
-  <%= error_tag f, :tags %>
+  <%= input f, :display_name %>
+  <%= input f, :body, using: :textarea %>
 
   <div>
-    <%= submit "Save" %>
+    <%= submit "Save", class: "bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded" %>
   </div>
 <% end %>

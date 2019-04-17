@@ -10,7 +10,7 @@
   <body class="container mx-auto">
     <nav class="flex items-center justify-between flex-wrap py-6">
       <div class="flex items-center flex-no-shrink mr-6">
-        <span class="font-semibold text-xl tracking-tight">RudiWriter</span>
+        <a class="font-semibold no-underline text-black text-xl tracking-tight" href="/">RudiWriter</a>
       </div>
 
       <div class="block lg:hidden">

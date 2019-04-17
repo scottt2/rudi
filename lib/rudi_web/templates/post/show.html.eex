@@ -1,28 +1,19 @@
-<h1>Show Post</h1>
-
-<ul>
-
-  <li>
-    <strong>Display name:</strong>
-    <%= @post.display_name %>
-  </li>
-
-  <li>
-    <strong>Body:</strong>
-    <%= @post.body %>
-  </li>
-
-  <li>
-    <strong>Published at:</strong>
-    <%= @post.published_at %>
-  </li>
-
-  <li>
-    <strong>Tags:</strong>
-    <%= @post.tags %>
-  </li>
-
-</ul>
-
-<span><%= link "Edit", to: Routes.post_path(@conn, :edit, @post) %></span>
+<div class="bg-white blog mb-4 pt-4 shadow-md">
+  <h1 class="text-3xl text-center">The Rudi Chronicle</h1>
+  <div class="border-b border-grey border-t justify-between mt-2 flex p-2 text-center text-xs uppercase w-full">
+    <div><%= @post.published_at || Timex.today() |> Timex.format!("{WDfull} {Mfull} {D}, {YYYY}") %></div>
+    <div>FREE</div>
+  </div>
+  <div class="text-center">
+    <h1 class="px-6 py-2 text-5xl">
+      <%= @post.display_name %>
+    </h1>
+    <img class="rounded-full" src="https://picsum.photos/g/100/100" />
+    <h2 class="italic text-sm">By Tyler Scott</h2>
+  </div>
+  <div class="p-12 pt-6 text-justify">
+    <%= {:safe, @post.body |> Earmark.as_html! } %>
+  </div>
+</div>
 <span><%= link "Back", to: Routes.post_path(@conn, :index) %></span>
+<span><%= link "Edit", to: Routes.post_path(@conn, :edit, @post.id) %></span>

@@ -4,6 +4,7 @@ defmodule Rudi.Blog.Post do
 
   schema "posts" do
     field :body, :string
+    field :slug, :string
     field :display_name, :string
     field :published_at, :naive_datetime
     field :tags, {:array, :string}
@@ -16,6 +17,6 @@ defmodule Rudi.Blog.Post do
   def changeset(post, attrs) do
     post
     |> cast(attrs, [:display_name, :body, :published_at, :tags])
-    |> validate_required([:display_name, :body, :published_at, :tags])
+    |> validate_required([:display_name, :body])
   end
 end

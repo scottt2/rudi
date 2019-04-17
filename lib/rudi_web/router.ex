@@ -20,6 +20,7 @@ defmodule RudiWeb.Router do
     get "/", PageController, :index
     get "/coach", PageController, :coach
     get "/me", UserController, :profile
+    resources "/blog", PostController, only: [:index, :show, :new, :create, :edit, :update]
     resources "/reports", ProgressReportController, only: [:index, :show]
     resources "/prompts", PromptController, only: [:show]
     resources "/users", UserController, only: [:index, :show, :new, :create]

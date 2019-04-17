@@ -45,7 +45,8 @@ defmodule Rudi.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:comeonin, "~> 4.1"},
       {:pbkdf2_elixir, "~> 0.12"},
-      {:timex, "~> 3.5"}
+      {:timex, "~> 3.5"},
+      {:earmark, "~> 1.3"}
     ]
   end
 
