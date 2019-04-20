@@ -6,21 +6,70 @@
   <div class="border-b border-grey border-t justify-between mt-2 flex p-2 text-center text-xs uppercase w-full">
     <div>Version 1.0.3</div>
     <div><%= Timex.today() |> Timex.format!("{WDfull} {Mfull} {D}, {YYYY}") %></div>
-    <div>FREE | $1.99 / m</div>
+    <div>FREE | $2.99 / m</div>
   </div>
-  <h2 class="px-6 py-2 text-4xl text-justify italic">
-    Daily exercise improves your writing skills, claims RudiWriter Creator
-  </h2>
-  <div class="pb-4 px-4">
+  <div class="p-4 pt-2">
     <div class="flex">
-      <div class="flex-1 text-justify pr-4 py-2">
-        Creative professionals agree&mdash;one of the most difficult things to overcome is a blank sheet of paper. RudiWriter aims to help you help yourself vanquish the tyranny of the blank page!
+      <div class="w-2/3">
+        <h2 class="pr-4 text-4xl text-justify italic">
+          Daily exercise improves writing, claims Creator
+        </h2>
+        <div class="flex">
+          <div class="flex-1 text-justify pr-4 py-2">
+            <p>Creative professionals agree that one of the most difficult obstacles to overcome is a blank sheet of paper.</p>
+            <p style="text-indent: 20px">RudiWriter aims to help you help yourself vanquish the tyranny of the blank page!</p>
+            <p style="text-indent: 20px">RudiWriter focuses on two factors that may hinder expression &mdash; learned inhibition and suboptimal mechanics.</p> 
+          </div>
+          <div class="flex-1 text-justify px-4 py-2">
+            <p>In a <a class="no-underline text-blue hover:underline hover:underline" href="/blog/less-hate-more-create">society lacking positive feedback</a>, writers are more apt to second guess themselves&mdash;to self edit before typing.</p>
+            <p style="text-indent: 20px">The second factor is the simple act of typing on a keyboard. Typing is the conduit of ideas. RudiWriter helps build a bigger pipe to capture more ideas, improving both quality and quantity.</p>
+          </div>
+        </div>
       </div>
-      <div class="flex-1 text-justify px-4 py-2">
-        RudiWriter focuses on two factors that hinder creative expression. The first is simple inhibition. In a <a class="no-underline text-blue hover:underline hover:underline" href="/blog/haters-everywhere">society wrought with negative criticism</a> at every turn, writers are more apt to second guess themselves&mdash;to self edit.
-      </div>
-      <div class="flex-1 text-justify pl-4 py-2">
-        The second factor is the simple act of typing on a keyboard. Typing is the conduit of ideas. RudiWriter helps build a bigger pipe to capture more ideas, improving both quality and quantity.
+      <div class="h-full pt-4 w-1/3">
+        <div role="alert">
+          <div class="bg-grey-lighter border border-grey-light font-bold py-2 text-center text-xs uppercase">
+            Latest Headlines
+          </div>
+          <div class="border border-grey-light border-t-0 px-4 py-3">
+            <div class="mb-2">
+              <div>
+                <a href="/" class="no-underline text-blue text-sm hover:underline hover:underline">
+                  Some article name that is long
+                </a>
+              </div>
+              <div class="text-grey text-xs">April 10th, 2019</div>
+            </div>
+            <div class="mb-2">
+              <div>
+                <a href="/" class="no-underline text-blue text-sm hover:underline hover:underline">
+                  Some article name that is long
+                </a>
+              </div>
+              <div class="text-grey text-xs">April 10th, 2019</div>
+            </div>
+            <div class="mb-2">
+              <div>
+                <a href="/" class="no-underline text-blue text-sm hover:underline hover:underline">
+                  Some article name that is long
+                </a>
+              </div>
+              <div class="text-grey text-xs">April 10th, 2019</div>
+            </div>
+            <div class="mb-2">
+              <div>
+                <a href="/" class="no-underline text-blue text-sm hover:underline hover:underline">
+                  Some article name that is long
+                </a>
+              </div>
+              <div class="text-grey text-xs">April 10th, 2019</div>
+            </div>
+
+            <div class="text-center text-sm">
+              <a class="no-underline text-blue hover:underline hover:underline" href="/news">See all headlines</a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <div class="flex mt-4">

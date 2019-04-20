@@ -46,7 +46,8 @@ defmodule Rudi.MixProject do
       {:comeonin, "~> 4.1"},
       {:pbkdf2_elixir, "~> 0.12"},
       {:timex, "~> 3.5"},
-      {:earmark, "~> 1.3"}
+      {:earmark, "~> 1.3"},
+      {:credo, "~> 1.0.0", only: [:dev, :test], runtime: false},
     ]
   end
 

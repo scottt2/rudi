@@ -12,20 +12,20 @@
     </tr>
   </thead>
   <tbody>
-<%= for post <- @posts do %>
-    <tr>
-      <td><%= post.display_name %></td>
-      <td><%= post.body %></td>
-      <td><%= post.published_at %></td>
-      <td><%= post.tags %></td>
+    <%= for post <- @posts do %>
+      <tr>
+        <td><%= post.display_name %></td>
+        <td><%= post.body %></td>
+        <td><%= post.published_at %></td>
+        <td><%= post.tags %></td>
 
-      <td>
-        <%= link "Show", to: Routes.post_path(@conn, :show, post) %>
-        <%= link "Edit", to: Routes.post_path(@conn, :edit, post) %>
-        <%= link "Delete", to: Routes.post_path(@conn, :delete, post), method: :delete, data: [confirm: "Are you sure?"] %>
-      </td>
-    </tr>
-<% end %>
+        <td>
+          <%= link "Show", to: Routes.post_path(@conn, :show, post) %>
+          <%= link "Edit", to: Routes.post_path(@conn, :edit, post) %>
+          <%= link "Delete", to: Routes.post_path(@conn, :delete, post), method: :delete, data: [confirm: "Are you sure?"] %>
+        </td>
+      </tr>
+    <% end %>
   </tbody>
 </table>
 
