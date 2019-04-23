@@ -139,7 +139,7 @@ end
 
 rudi =
   case Rudi.Repo.get_by(Rudi.Accounts.User, username: "rudi") do
-    nil -> Rudi.Repo.insert!(%Rudi.Accounts.User{ name: "Rudi", username: "rudi" })
+    nil -> Rudi.Repo.insert!(%Rudi.Accounts.User{name: "Rudi", username: "rudi"})
     rudi -> rudi
   end
 
@@ -193,4 +193,15 @@ file_tuples |> Enum.each fn {n, gram_type, file} ->
       _ -> IO.puts("#{char} exists.")
     end
   end
+end
+
+File.stream!(Path.relative_to_cwd("data/en_phrases.txt"))
+|> Enum.take(20)
+|> Enum.each fn line -> 
+  [_ | words] = String.split(line, ~r{\s}, trim: true)
+  start_chars =
+    words
+    |> Enum.map(fn w -> String.first(w) end)
+    |> Enum.join("")
+  # TODO: Create phrase schema. Store phrase and start chars. Uniq start chars.
 end
