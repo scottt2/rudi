@@ -6,7 +6,7 @@
   window.rudi.userPrompts = [];
   window.rudi.activeUserPrompt = <%= {:safe, @active_user_prompt} %>;
 </script>
-<div class="bg-white rounded shadow-md">
+<div class="bg-white rounded shadow-lg">
   <div class="px-6 py-4">
     <small class="italic text-grey-darker">Seed</small>
     <h1 class="font-bold mb-2 text-2xl"><%= @prompt.seed.body %></h1>

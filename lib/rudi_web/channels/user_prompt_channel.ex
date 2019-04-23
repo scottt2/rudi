@@ -4,7 +4,7 @@ defmodule RudiWeb.UserPromptChannel do
   def join("user_prompt:" <> user_prompt_id, _params, socket) do
     [username, prompt_id] = String.split(user_prompt_id, ":")
     # TODO: Make sure this is all up to snuff
-    up = case Rudi.Drills.get_active_user_prompt(:with_ids, socket.assigns.user_id, prompt_id) do
+    up = case Rudi.Responses.get_active_user_prompt(:with_ids, socket.assigns.user_id, prompt_id) do
       # NOTE: If there exists a persisted UserPrompt, mark it as interupted if active
       nil -> nil
       existing_up ->
@@ -32,7 +32,7 @@ defmodule RudiWeb.UserPromptChannel do
     up = case socket.assigns.user_prompt do
       nil ->
         prompt = Rudi.Drills.get_prompt_by_public_id!(socket.assigns.prompt_id)
-        Rudi.Repo.insert!(%Rudi.Drills.UserPrompt{
+        Rudi.Repo.insert!(%Rudi.Responses.UserPrompt{
           user_id: socket.assigns.user_id,
           prompt_id: prompt.id,
           socket_id: socket.assigns.socket_id

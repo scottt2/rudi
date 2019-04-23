@@ -1,4 +1,4 @@
-defmodule Rudi.Drills.UserPrompt do
+defmodule Rudi.Responses.UserPrompt do
   use Ecto.Schema
   import Ecto.Changeset
 

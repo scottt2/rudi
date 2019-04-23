@@ -20,6 +20,7 @@
     perspective: "first",
     tense: "past",
     weight: 5,
+    type: "prompt"
   },
   %Rudi.Drills.Skill{
     name: "Description of environment",
@@ -30,6 +31,7 @@
     perspective: "third",
     tense: "past",
     weight: 7,
+    type: "prompt"
   },
   %Rudi.Drills.Skill{
     name: "Description of environment",
@@ -40,6 +42,7 @@
     perspective: "first",
     tense: "present",
     weight: 5,
+    type: "prompt"
   },
   %Rudi.Drills.Skill{
     name: "Description of environment",
@@ -50,6 +53,7 @@
     perspective: "third",
     tense: "present",
     weight: 7,
+    type: "prompt"
   },
   %Rudi.Drills.Skill{
     name: "Character dialog",
@@ -60,6 +64,7 @@
     perspective: "first",
     tense: "past",
     weight: 5,
+    type: "prompt"
   },
   %Rudi.Drills.Skill{
     name: "Character dialog",
@@ -70,6 +75,7 @@
     perspective: "third",
     tense: "past",
     weight: 7,
+    type: "prompt"
   },
   %Rudi.Drills.Skill{
     name: "Character dialog",
@@ -80,6 +86,7 @@
     perspective: "first",
     tense: "present",
     weight: 5,
+    type: "prompt"
   },
   %Rudi.Drills.Skill{
     name: "Character dialog",
@@ -90,15 +97,37 @@
     perspective: "third",
     tense: "present",
     weight: 7,
+    type: "prompt"
   },
   %Rudi.Drills.Skill{
     name: "Free Write",
     description: "Free writing is a great tool for overcoming inhibitions. For
     this skill, try to continuously type without regard to spelling or grammar.
-    The goal is to let your ideas bypass your ego. Let your thoughts flow!"
+    The goal is to let your ideas bypass your ego. Let your thoughts flow!",
     perspective: "free",
     tense: "free",
     weight: 7,
+    type: "prompt"
+  },
+  %Rudi.Drills.Skill{
+    name: "Target Acquistion",
+    description: "Simply put, this skills is how fast you can hunt and peck
+     a given key. Mastery of this skill should have consistent seek times regardless
+     of key, enabling faster composition.",
+    perspective: "none",
+    tense: "none",
+    weight: 7,
+    type: "typing"
+  },
+  %Rudi.Drills.Skill{
+    name: "Word Composition",
+    description: "The abililty to type words is the gateway to crafting written
+     expression. This skill has two components: one is how fast can you type a given
+     word; the other, how accurately can you type that word.",
+    perspective: "none",
+    tense: "none",
+    weight: 7,
+    type: "typing"
   },
 ]
 |> Enum.each fn skill ->
@@ -141,3 +170,27 @@ Rudi.Repo.insert!(%Rudi.Drills.Prompt{
   skill_id: 1
 })
 
+file_tuples = [
+  {1, "character", "data/freq_en_characters.json"},
+  {2, "character", "data/freq_en_bigram_characters.json"},
+  {3, "character", "data/freq_en_trigram_characters.json"},
+  {4, "character", "data/freq_en_quadrigrams_characters.json"},
+]
+
+file_tuples |> Enum.each fn {n, gram_type, file} ->
+  {:ok, body} = File.read(Path.relative_to_cwd(file))
+  body
+  |> Jason.decode!
+  |> Enum.each fn [char, freq] ->
+    case Rudi.Repo.get_by(Rudi.Drills.Ngram, body: char) do
+      nil ->
+        Rudi.Repo.insert!(%Rudi.Drills.Ngram{
+          body: char,
+          frequency: Integer.floor_div(freq, 1000),
+          gram_type: gram_type, 
+          n: n,
+        })
+      _ -> IO.puts("#{char} exists.")
+    end
+  end
+end

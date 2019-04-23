@@ -3,6 +3,7 @@ defmodule RudiWeb.PromptController do
 
   alias Rudi.Drills
   alias Rudi.Drills.Prompt
+  alias Rudi.Responses
 
   def index(conn, _params) do
     prompts = Drills.list_prompts()
@@ -42,8 +43,8 @@ defmodule RudiWeb.PromptController do
       true -> Drills.get_prompt_by_public_id!(id)
     end
     # TODO: Consolidate
-    user_prompts = Drills.list_completed_user_prompts(conn.assigns.current_user, prompt)
-    active_user_prompt = Drills.get_active_user_prompt(conn.assigns.current_user, prompt) |> Jason.encode!
+    user_prompts = Responses.list_completed_user_prompts(conn.assigns.current_user, prompt)
+    active_user_prompt = Responses.get_active_user_prompt(conn.assigns.current_user, prompt) |> Jason.encode!
     render(conn, "show.html", active_user_prompt: active_user_prompt, prompt: prompt, user_prompts: user_prompts)
   end
 

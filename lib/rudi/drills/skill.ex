@@ -8,6 +8,7 @@ defmodule Rudi.Drills.Skill do
     field :perspective, :string
     field :tense, :string
     field :weight, :integer
+    field :type, :string
 
     timestamps()
   end
